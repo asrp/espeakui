@@ -59,7 +59,8 @@ class EspeakUI():
         if lang not in self.languages:
             lang = self.languages[0]
         self.speaker.voice["language"] = lang
-        clipboard = clipboard.decode('utf-8') if type(clipboard) == bytes else clipboard
+
+        clipboard = clipboard.decode('utf-8') if sys.version_info[0] >= 3 else clipboard
         text = text_substitution(clipboard, lang)
         self.speaker.add_callback(self.clipcallback)
         self.speaker.play(text)
