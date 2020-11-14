@@ -1,12 +1,10 @@
 # espeakui - a text-to-speech interface with mplayer-like bindings, using espeak
 
-## Installation and dependencies
+## Installation
 
-    git clone https://github.com/asrp/espeakui
-    cd espeakui
-    pip install -r requirements.txt
+    pip install espeakui
 
-Depends on
+## Dependencies
 
 - [python-espeak](https://github.com/asrp/python-espeak) - The custom version that's here on Github
 - xclip - For clipboard mode only. Install for your system with something like `sudo apt-get install xclip` or `pacman -S xclip` or other.
@@ -18,7 +16,7 @@ Depends on
 
 Run
 
-    python espeakui.py
+    python -m espeakui.espeakui
 
 A contentless window opens. It accepts these keys.
 
@@ -39,7 +37,7 @@ There are two modes of operation: "normal" and "clipboard". clipboard mode is th
 There's an alternative curses interface with the same keybindings. It uses [urwid](http://urwid.org/).
 
     pip install urwid
-    python espeak_urwid.py
+    python -m espeakui.espeak_urwid
 
 **Suggestion:** I've setup a keyboard shortcut to call `python espeakui.py` in my windows manager. Then just highlight text somewhere and hit the keyboard shortcut.
 
@@ -63,12 +61,12 @@ The rest of the features are a hodgepodge of personal preferences. Hopefully esp
 
 ## Usage as a library
 
-`espeakui.py` depends on `espeaker.py` which can be used independently as aa library. It also provides some classes not used by `espeakui.py`.
+`espeakui.py` depends on `espeaker.py` which can be used independently as a library. It also provides some classes not used by `espeakui.py`.
 
 ### FileEspeak
 
     import espeak
-    from espeaker import FileEspeak
+    from espeakui.espeaker import FileEspeak
     espeak.init(playback=False)
     file_espeak = FileEspeak(open("test.wav", "w"))
     file_espeak.say("Hello world")
@@ -80,7 +78,7 @@ The rest of the features are a hodgepodge of personal preferences. Hopefully esp
 `espeaker.SubprocessEspeak` pipes the wave content to a subprocess.
 
     import espeak
-    from espeaker import SubprocessEspeak
+    from espeakui.espeaker import SubprocessEspeak
     espeak.init(playback=False)
     subprocess_espeak = SubprocessEspeak(command="aplay")
     subprocess_espeak.say("Hello world")
@@ -94,7 +92,7 @@ will use `aplay` to playa the audio output.
 For example, run this in the interpreter
 
     import espeak
-    import espeaker
+    from espeakui import espeaker
     espeak.init()
     espeaker = espeaker.Espeaker()
     text = "\n".join("\n".join(["{} little bugs in the code.".format(i),

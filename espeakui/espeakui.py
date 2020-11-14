@@ -4,13 +4,13 @@ try:
 except ImportError:
     import tkinter as tk
 import espeak
-from espeakui.espeaker import Espeaker
+from .espeaker import Espeaker
 import sys
 import logging
 
 from subprocess import Popen, PIPE
 import re
-from espeakui.translate import translate, regex
+from .translate import translate, regex
 try:
     from guess_language.guess_language import guessLanguage
 except ImportError:
