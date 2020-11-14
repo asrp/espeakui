@@ -54,8 +54,8 @@ class Espeaker(espeak.Espeak):
             filename = pkg_resources.resource_filename(
                 'espeakui', 'earcon/carriage_return.wav')
             play_wave(filename)
-        #print espeak.event_name[event_type], position, name
-        #print repr(self.text[position-1])
+        #print(espeak.event_name[event_type], position, name)
+        #print(repr(self.text[position-1]))
         if espeak.event_name[event_type] == "sentence":
             self.sentences.append(position)
         self.lastpos[espeak.event_name[event_type]] = position

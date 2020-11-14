@@ -4,13 +4,13 @@ try:
 except ImportError:
     import tkinter as tk
 import espeak
-from espeaker import Espeaker
+from espeakui.espeaker import Espeaker
 import sys
 import logging
 
 from subprocess import Popen, PIPE
 import re
-from translate import translate, regex
+from espeakui.translate import translate, regex
 try:
     from guess_language.guess_language import guessLanguage
 except ImportError:
@@ -33,8 +33,6 @@ def text_substitution(text, lang):
     for source, target in translate[lang]:
         text = text.replace(source, target)
     text = text.replace("\n", '<mark name="eol"/>\n')
-    #text = re.sub("\n+", "\n\nSTOP.\n\n", text)
-    #print text
     return text
 
 class EspeakUI():
@@ -82,7 +80,6 @@ class EspeakUI():
             else:
                 self.speaker.play()
         elif key == "l":
-            #os.system("xclip -o > text")
             s = open("text").read()
             self.speaker.play(s)
         elif key in ["Left", "Up", "Right", "Down"]:

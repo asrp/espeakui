@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import urwid
 import espeak
-from espeaker import Espeaker
+from espeakui.espeaker import Espeaker
 from xreload import xreload
 import espeakui
 import sys
