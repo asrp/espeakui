@@ -1,1 +1,1 @@
--e git://github.com/asrp/python-espeak#egg=python-espeak
+python-espeak

@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='espeakui',
-      version='0.1',
+      version='0.2.0',
       description='A text-to-speech interface with mplayer-like bindings, using espeak',
       long_description=open("readme.md").read(),
       long_description_content_type="text/markdown",

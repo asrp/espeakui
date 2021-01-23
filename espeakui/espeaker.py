@@ -1,9 +1,11 @@
 import espeak
 import subprocess
 import sys
+import logging
 import pkg_resources
 
-def play_wave(filename):
+def play_wave(filepath):
+    # filename = pkg_resources.resource_filename('espeakui', filepath)
     # subprocess.Popen(["play", "-q", filename])
     pass
 
@@ -51,20 +53,17 @@ class Espeaker(espeak.Espeak):
 
     def callback(self, wave_string, event_type, position, length, num_samples, name):
         if espeak.event_name[event_type] == "mark" and name == "eol":
-            filename = pkg_resources.resource_filename(
-                'espeakui', 'earcon/carriage_return.wav')
-            play_wave(filename)
+            play_wave('earcon/carriage_return.wav')
         #print(espeak.event_name[event_type], position, name)
         #print(repr(self.text[position-1]))
         if espeak.event_name[event_type] == "sentence":
             self.sentences.append(position)
         self.lastpos[espeak.event_name[event_type]] = position
-        if espeak.event_name[event_type] in ["sentence", "msg_terminated"] and self.continuous:
+        if espeak.event_name[event_type] in ["sentence", "msg_terminated", "list_terminated"] and self.continuous:
             pass
-            #if espeak.event_name[event_type] == "msg_terminated" and len(self.text) > self.position + 1:
-            #    self.play()
         else:
-            self.position = position
+            if espeak.event_name[event_type] not in ["msg_terminated", "list_terminated"]:
+                self.position = position
 
     def stop(self):
         self.pause()

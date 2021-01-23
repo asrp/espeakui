@@ -28,11 +28,20 @@ A contentless window opens. It accepts these keys.
 - `Left arrow` Seek forward less
 - `Right arrow` Seek backward less
 - `s` Zoom: speaks the text around the current cursor at a much slower pace and then resumes normal speech.
-- `l` load a text file "text" and read it (replaces what is currently being read). Mainly for non-clipboard mode.
+- `l` Load a text file "text" and read it (replaces what is currently being read). Mainly for non-clipboard mode.
+- `q` Quit
+- `n, p` Previous file/next file when running in directory mode.
 
 Seeking is possible while paused and "preview" of the text surrounding the new cursor position is played.
 
-There are two modes of operation: "normal" and "clipboard". clipboard mode is the most used but needs `xclip` to be installed.
+There are four modes of operation (with corresponding command line option):
+
+- normal `-nc`
+- clipboard `-c`
+- file `-f <file path>`
+- directory `-d <directory path>`
+
+Clipboard mode is the most used but needs `xclip` to be installed.
 
 There's an alternative curses interface with the same keybindings. It uses [urwid](http://urwid.org/).
 
